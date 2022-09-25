@@ -155,7 +155,7 @@ type LetDeclaration
 {-| Expression for a lambda
 -}
 type alias Lambda =
-    { args : List (Node Pattern)
+    { arguments : List (Node Pattern)
     , expression : Node Expression
     }
 
@@ -425,9 +425,9 @@ encodeCase ( pattern, expression ) =
 
 
 encodeLambda : Lambda -> Value
-encodeLambda { args, expression } =
+encodeLambda { arguments, expression } =
     JE.object
-        [ ( "patterns", JE.list (Node.encode Pattern.encode) args )
+        [ ( "patterns", JE.list (Node.encode Pattern.encode) arguments )
         , ( "expression", Node.encode encode expression )
         ]
 

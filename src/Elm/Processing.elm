@@ -408,8 +408,8 @@ visitExpression : OperatorTable -> Node Expression -> Node Expression
 visitExpression table expression =
     visitExpressionInner table <|
         case expression of
-            Node r (Application args) ->
-                Node r (fixApplication table args)
+            Node r (Application arguments) ->
+                Node r (fixApplication table arguments)
 
             _ ->
                 expression

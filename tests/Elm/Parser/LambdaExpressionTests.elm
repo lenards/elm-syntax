@@ -23,7 +23,7 @@ all =
                     |> Expect.equal
                         (Just
                             (LambdaExpression
-                                { args = [ Node emptyRange UnitPattern ]
+                                { arguments = [ Node emptyRange UnitPattern ]
                                 , expression = Node emptyRange <| FunctionOrValue [] "foo"
                                 }
                             )
@@ -35,7 +35,7 @@ all =
                     |> Expect.equal
                         (Just
                             (LambdaExpression
-                                { args = [ Node emptyRange (RecordPattern [ Node { end = { column = 0, row = 0 }, start = { column = 0, row = 0 } } "foo" ]) ]
+                                { arguments = [ Node emptyRange (RecordPattern [ Node { end = { column = 0, row = 0 }, start = { column = 0, row = 0 } } "foo" ]) ]
                                 , expression = Node emptyRange <| FunctionOrValue [] "foo"
                                 }
                             )
@@ -47,25 +47,25 @@ all =
                     |> Expect.equal
                         (Just
                             (LambdaExpression
-                                { args = [ Node emptyRange (RecordPattern []) ]
+                                { arguments = [ Node emptyRange (RecordPattern []) ]
                                 , expression = Node emptyRange <| FunctionOrValue [] "foo"
                                 }
                             )
                         )
-        , test "function arg" <|
+        , test "function argument" <|
             \() ->
                 parseAsFarAsPossibleWithState emptyState "a b" Parser.functionArgument
                     |> Maybe.map Node.value
                     |> Expect.equal
                         (Just (VarPattern "a"))
-        , test "args lambda" <|
+        , test "arguments lambda" <|
             \() ->
                 parseFullStringState emptyState "\\a b -> a + b" Parser.expression
                     |> Maybe.map (Node.value >> noRangeInnerExpression)
                     |> Expect.equal
                         (Just
                             (LambdaExpression
-                                { args =
+                                { arguments =
                                     [ Node emptyRange <| VarPattern "a"
                                     , Node emptyRange <| VarPattern "b"
                                     ]
@@ -86,7 +86,7 @@ all =
                     |> Expect.equal
                         (Just
                             (LambdaExpression
-                                { args =
+                                { arguments =
                                     [ Node emptyRange <|
                                         TuplePattern
                                             [ Node emptyRange <| VarPattern "a"

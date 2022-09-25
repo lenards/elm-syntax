@@ -75,7 +75,7 @@ encode typeAnnotation =
                     [ ( "value", JE.string name )
                     ]
 
-        Typed moduleNameAndName args ->
+        Typed moduleNameAndName arguments ->
             let
                 inner : ( ModuleName, String ) -> Value
                 inner ( mod, n ) =
@@ -87,7 +87,7 @@ encode typeAnnotation =
             encodeTyped "typed" <|
                 JE.object
                     [ ( "moduleNameAndName", Node.encode inner moduleNameAndName )
-                    , ( "args", JE.list (Node.encode encode) args )
+                    , ( "arguments", JE.list (Node.encode encode) arguments )
                     ]
 
         Unit ->
@@ -151,7 +151,7 @@ decoder =
                 , ( "typed"
                   , JD.map2 Typed
                         (JD.field "moduleNameAndName" <| Node.decoder decodeModuleNameAndName)
-                        (JD.field "args" (JD.list nestedDecoder))
+                        (JD.field "arguments" (JD.list nestedDecoder))
                   )
                 , ( "unit", JD.succeed Unit )
                 , ( "tupled", JD.map Tupled (JD.field "values" (JD.list nestedDecoder)) )
