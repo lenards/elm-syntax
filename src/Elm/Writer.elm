@@ -325,7 +325,7 @@ writeTypeAnnotation (Node _ typeAnnotation) =
         GenericType s ->
             string s
 
-        Typed moduleNameAndName args ->
+        Typed moduleNameAndName arguments ->
             let
                 moduleName =
                     Node.value moduleNameAndName |> Tuple.first
@@ -335,7 +335,7 @@ writeTypeAnnotation (Node _ typeAnnotation) =
             in
             spaced
                 ((string <| String.join "." (moduleName ++ [ k ]))
-                    :: List.map (writeTypeAnnotation >> parensIfContainsSpaces) args
+                    :: List.map (writeTypeAnnotation >> parensIfContainsSpaces) arguments
                 )
 
         Unit ->
@@ -521,7 +521,7 @@ writeExpression (Node range inner) =
             spaced
                 [ join
                     [ string "\\"
-                    , spaced (List.map writePattern lambda.args)
+                    , spaced (List.map writePattern lambda.arguments)
                     ]
                 , string "->"
                 , writeExpression lambda.expression

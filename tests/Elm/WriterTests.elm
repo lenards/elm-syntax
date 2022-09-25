@@ -272,7 +272,7 @@ suite =
                     let
                         body =
                             LambdaExpression
-                                { args = [ Node emptyRange (VarPattern "myArgument") ]
+                                { arguments = [ Node emptyRange (VarPattern "myArgument") ]
                                 , expression =
                                     Node emptyRange <|
                                         CaseExpression
@@ -315,7 +315,7 @@ suite =
                             ParenthesizedExpression
                                 (Node emptyRange <|
                                     LambdaExpression
-                                        { args = [ Node emptyRange (VarPattern "myArgument") ]
+                                        { arguments = [ Node emptyRange (VarPattern "myArgument") ]
                                         , expression =
                                             Node emptyRange <|
                                                 CaseExpression
@@ -404,7 +404,7 @@ suite =
                                                 (ParenthesizedExpression
                                                     (Node emptyRange <|
                                                         LambdaExpression
-                                                            { args = [ Node emptyRange (VarPattern "myArgument") ]
+                                                            { arguments = [ Node emptyRange (VarPattern "myArgument") ]
                                                             , expression =
                                                                 body (body (Node emptyRange UnitExpr))
                                                             }

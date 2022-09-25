@@ -208,10 +208,10 @@ typedTypeAnnotation mode =
                                 case mode of
                                     Eager ->
                                         Combine.map
-                                            (\args ->
+                                            (\arguments ->
                                                 Node
-                                                    (Range.combine (tir :: nodeRanges args))
-                                                    (Typed original args)
+                                                    (Range.combine (tir :: nodeRanges arguments))
+                                                    (Typed original arguments)
                                             )
                                             (genericHelper [])
 

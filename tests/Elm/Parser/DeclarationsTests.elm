@@ -194,7 +194,7 @@ all =
                                 }
                             )
                         )
-        , test "function declaration with args" <|
+        , test "function declaration with arguments" <|
             \() ->
                 parseFullStringWithNullState "inc x = x + 1" Parser.function
                     |> Maybe.map Node.value

@@ -65,7 +65,7 @@ functionWithNameNode pointer =
     let
         functionImplementationFromVarPointer : Node String -> Parser State (Node FunctionImplementation)
         functionImplementationFromVarPointer varPointer =
-            succeed (\args expr -> Node (Range.combine [ Node.range varPointer, Node.range expr ]) (FunctionImplementation varPointer args expr))
+            succeed (\arguments expr -> Node (Range.combine [ Node.range varPointer, Node.range expr ]) (FunctionImplementation varPointer arguments expr))
                 |> Combine.andMap (many (functionArgument |> Combine.ignore (maybe Layout.layout)))
                 |> Combine.ignore (string "=")
                 |> Combine.ignore (maybe Layout.layout)
@@ -401,8 +401,8 @@ lambdaExpression =
             Ranges.withCurrentPoint
                 (\current ->
                     succeed
-                        (\args expr ->
-                            Lambda args expr
+                        (\arguments expr ->
+                            Lambda arguments expr
                                 |> LambdaExpression
                                 |> Node { start = current.start, end = (Node.range expr).end }
                         )

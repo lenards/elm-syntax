@@ -121,7 +121,7 @@ all =
                                 ]
                             }
                         )
-        , test "type with multiple args" <|
+        , test "type with multiple arguments" <|
             \() ->
                 parseFullStringWithNullState "type D = C a B" Parser.typeDefinition
                     |> Maybe.andThen asType
@@ -142,7 +142,7 @@ all =
                             , name = Node emptyRange <| "D"
                             }
                         )
-        , test "type with multiple args and correct distribution of args" <|
+        , test "type with multiple arguments and correct distribution of arguments" <|
             \() ->
                 parseFullStringWithNullState "type D = C B a" Parser.typeDefinition
                     |> Maybe.andThen asType
@@ -163,7 +163,7 @@ all =
                             , name = Node emptyRange <| "D"
                             }
                         )
-        , test "type args should not continue on next line" <|
+        , test "type arguments should not continue on next line" <|
             \() ->
                 parseAsFarAsPossibleWithState emptyState "type D = C B\na" Parser.typeDefinition
                     |> Maybe.andThen asType

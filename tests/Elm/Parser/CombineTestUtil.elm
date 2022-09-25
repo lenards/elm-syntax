@@ -384,7 +384,7 @@ noRangeInnerExpression inner =
             LambdaExpression
                 { lambda
                     | expression = noRangeExpression lambda.expression
-                    , args = List.map noRangePattern lambda.args
+                    , arguments = List.map noRangePattern lambda.arguments
                 }
 
         RecordUpdateExpression name updates ->
